@@ -14,7 +14,7 @@ import io.swagger.annotations.ApiModelProperty;
 @DynamicUpdate
 @Entity
 @Table(name = "FlagPickerCount")
-public class FlagPicker implements Serializable {// extends AbstractAggregateRoot {
+public class FlagPicker implements Serializable {
 
 	private static final long serialVersionUID = 3211336258674830563L;
 

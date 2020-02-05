@@ -15,7 +15,6 @@ import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
-
 import com.apple.FlagFickerApplication;
 import com.fasterxml.jackson.core.JsonProcessingException;
 

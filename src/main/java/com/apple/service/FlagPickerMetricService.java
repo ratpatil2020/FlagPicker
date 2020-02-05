@@ -1,18 +1,13 @@
 package com.apple.service;
 
 import java.util.Optional;
-
 import javax.annotation.PostConstruct;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.apple.entity.FlagPicker;
 import com.apple.entity.repository.FlagPickerRepository;
-
 import io.micrometer.core.instrument.Counter;
 import io.micrometer.core.instrument.MeterRegistry;
-
 
 @Service
 public class FlagPickerMetricService {

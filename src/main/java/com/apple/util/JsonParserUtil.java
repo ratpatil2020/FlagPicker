@@ -2,7 +2,6 @@ package com.apple.util;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
 import com.apple.bo.ContinentDTO;
 import com.apple.exception.JsonParsingException;
 import com.fasterxml.jackson.core.JsonProcessingException;

@@ -4,7 +4,7 @@ import io.swagger.annotations.ApiModelProperty;
 
 public class CountryDTO {
 
-	@ApiModelProperty(notes = "Hold the country name")
+	@ApiModelProperty(notes = "Hold the country name", required = true)
 	private String name;
 	
 	@ApiModelProperty(notes = "Hold the corresponding country flag.")

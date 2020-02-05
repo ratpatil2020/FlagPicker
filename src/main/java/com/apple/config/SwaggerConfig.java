@@ -15,7 +15,21 @@ import static springfox.documentation.builders.PathSelectors.regex;
  
 @Configuration 
 @EnableSwagger2 
-public class SwaggerConfig extends WebMvcConfigurationSupport { 
+public class SwaggerConfig  extends WebMvcConfigurationSupport { 
+	
+	private ApiInfo apiInfo() {
+	    Contact contact = new Contact("Rajashekharagouda Policepatil", "https://www.myhcl.com", "raj.policepatil2017@gmail.com");
+	    return new ApiInfoBuilder()
+	            .title("Spring Boot Rest API for Flag Picker.")
+	            .description("Spring Boot Rest API to view the Continent,Country and Coutnry corresponding flag.")
+	            .termsOfServiceUrl("https://github.com/ratpatil2020/FlagPicker")
+	            .contact(contact)
+	            .license("Apache License Version 2.0")
+	            .licenseUrl("https://www.apache.org/licenses/LICENSE-2.0")
+	            .version("1.0.0")
+	            .build();
+	}
+		  
     @Bean 
     public Docket productApi() { 
         return new Docket(DocumentationType.SWAGGER_2) 
@@ -23,18 +37,11 @@ public class SwaggerConfig extends WebMvcConfigurationSupport {
                 .apis(RequestHandlerSelectors.basePackage("com.apple.controller.rest"))                       
                 .paths(regex("/.*"))                
                 .build() 
-                .apiInfo(metaData()); 
+                .apiInfo(apiInfo()); 
         
        
     } 
-    private ApiInfo metaData() { 
-        return new ApiInfoBuilder() 
-                .title("Spring Boot REST API") 
-                .description("\"Spring Boot REST API for Flag Picker\"") 
-                .version("1.0.0")               
-                .contact(new Contact(" : Rajashekharagouda Policepatil", "", "raj.policepatil2014@gmail.com")) 
-                .build(); 
-    } 
+    
     @Override 
     protected void addResourceHandlers(ResourceHandlerRegistry registry) { 
         registry.addResourceHandler("swagger-ui.html") 

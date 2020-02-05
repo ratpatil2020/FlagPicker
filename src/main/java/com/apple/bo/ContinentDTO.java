@@ -4,10 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 import io.swagger.annotations.ApiModelProperty;
 
-
 public class ContinentDTO {
 
-	@ApiModelProperty(notes = "Hold the continent name")
+	@ApiModelProperty(notes = "Hold the continent name", required = true)
 	private String continent;
 	
 	@ApiModelProperty(notes = "Hold the countries and correposning flag associated with continent.")
