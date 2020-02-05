@@ -20,10 +20,8 @@ public class SwaggerConfig extends WebMvcConfigurationSupport {
     public Docket productApi() { 
         return new Docket(DocumentationType.SWAGGER_2) 
                 .select() 
-                .apis(RequestHandlerSelectors.basePackage("com.apple.controller.rest"))
-              //  .apis(RequestHandlerSelectors.basePackage("com.apple.controller.rest.metric"))               
-                .paths(regex("/.*")) 
-                //.paths(regex("/flagPicker/metricservice.*")) 
+                .apis(RequestHandlerSelectors.basePackage("com.apple.controller.rest"))                       
+                .paths(regex("/.*"))                
                 .build() 
                 .apiInfo(metaData()); 
         

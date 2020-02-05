@@ -1,8 +1,13 @@
 package com.apple.bo;
 
+import io.swagger.annotations.ApiModelProperty;
+
 public class CountryDTO {
 
+	@ApiModelProperty(notes = "Hold the country name")
 	private String name;
+	
+	@ApiModelProperty(notes = "Hold the corresponding country flag.")
 	private String flag;
 	
 	public String getName() {

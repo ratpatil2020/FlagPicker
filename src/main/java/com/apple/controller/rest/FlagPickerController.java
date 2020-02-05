@@ -12,8 +12,12 @@ import com.apple.bo.ContinentDTO;
 import com.apple.bo.CountryDTO;
 import com.apple.service.ContinentService;
 import com.apple.service.FlagPickerMetricService;
-import io.micrometer.core.annotation.Timed;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 
+@Api(value = "FlagPickerController" , description = "Operations pertaining to Continents,Country and corresponding flag.")
 @RestController
 @RequestMapping("/flagPicker")
 public class FlagPickerController {   
@@ -26,8 +30,16 @@ public class FlagPickerController {
 	@Autowired
 	private FlagPickerMetricService flagFickerMetricService;
 	
-	@GetMapping("/continents")
-	@Timed("http.server.requests")
+	
+	@ApiOperation(value = "  -  View a list of available continents,countries and corresponding country flag.", response = ContinentDTO[].class)
+	@ApiResponses(value = {
+	        @ApiResponse(code = 200, message = "Successfully retrieved list"),
+	        @ApiResponse(code = 401, message = "You are not authorized to view the resource"),
+	        @ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
+	        @ApiResponse(code = 404, message = "The resource you were trying to reach is not found")
+	      }
+	)	
+	@GetMapping("/continents")	
 	public ResponseEntity<ContinentDTO[]> getAllContinentsAndCountries(){
 		String method="getAllContinentsAndCountries() : ";
 		LOGGER.info(method+" started ...");
@@ -39,6 +51,14 @@ public class FlagPickerController {
 		return ResponseEntity.ok().body(continentDTOs);
 	}
 
+	@ApiOperation(value = "  -  Search continent,countries and corresponding country flag by continent.", response = ContinentDTO.class)
+	@ApiResponses(value = {
+	        @ApiResponse(code = 200, message = "Successfully retrieved Continent Object"),
+	        @ApiResponse(code = 401, message = "You are not authorized to view the resource"),
+	        @ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
+	        @ApiResponse(code = 404, message = "The resource you were trying to reach is not found")
+	      }
+	)	
 	@GetMapping("/continents/{continent}/countries")
 	public ResponseEntity<ContinentDTO> getAllCountriesByContinent(@PathVariable("continent") String continent){
 		
@@ -55,6 +75,14 @@ public class FlagPickerController {
 		return ResponseEntity.ok().body(continentDTO);
 	}
 	
+	@ApiOperation(value = "  -  Search country flag by country.", response = CountryDTO.class)	
+	@ApiResponses(value = {
+	        @ApiResponse(code = 200, message = "Successfully retrieved Country Object"),
+	        @ApiResponse(code = 401, message = "You are not authorized to view the resource"),
+	        @ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
+	        @ApiResponse(code = 404, message = "The resource you were trying to reach is not found")
+	      }
+	)	
 	@GetMapping("/continents/{country}/flag")
 	public ResponseEntity<CountryDTO> getCountryFlagByCountry(@PathVariable("country") String country){
 		

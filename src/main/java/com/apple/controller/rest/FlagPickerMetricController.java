@@ -10,13 +10,17 @@ import com.apple.entity.FlagPicker;
 import com.apple.entity.repository.FlagPickerRepository;
 import com.apple.exception.ContinentNotFoundException;
 import com.apple.exception.CountryNotFoundException;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 
+@Api(value = "FlagPickerMetricController" , description = "API to count number of times corresponding Rest API is been triggered by either continent or country.")
 @RestController("/flagPicker/metricservice")
 public class FlagPickerMetricController {	
 	
 	@Autowired
 	private FlagPickerRepository repository;	
-		
+	
+	@ApiOperation(value = "  -  API to view the count number of times API is trigged by country.")
 	@GetMapping("/continent/country/fetch/count")
 	public ResponseEntity<FlagPicker> continentCountryFlagFetchCount(){		
 	
@@ -28,6 +32,7 @@ public class FlagPickerMetricController {
 		return ResponseEntity.ok().body(flagPickerOptional.get());
 	}
 	
+	@ApiOperation(value = "  -  API to view the count number of times API is trigged by continet.")
 	@GetMapping("/continent/fetch/count")
 	public ResponseEntity<FlagPicker[]> continentFetchCount(){	
 	

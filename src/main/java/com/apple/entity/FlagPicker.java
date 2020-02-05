@@ -4,16 +4,13 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.EntityListeners;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-
 import org.hibernate.annotations.DynamicUpdate;
-import org.springframework.data.domain.AbstractAggregateRoot;
+import io.swagger.annotations.ApiModelProperty;
 
-//@EntityListeners(FlagPickerEntityListener.class)
 @DynamicUpdate
 @Entity
 @Table(name = "FlagPickerCount")
@@ -23,12 +20,15 @@ public class FlagPicker implements Serializable {// extends AbstractAggregateRoo
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@ApiModelProperty(notes = "The database generated FlagPicker ID")
 	private Long id;
 	
 	@Column(nullable = false,unique = true)
+	@ApiModelProperty(notes = "Valid value type=[\"continent\",\"country\"].")
 	private String type;
 	
 	@Column(nullable = false,unique = false)
+	@ApiModelProperty(notes = "API search count by type=[\"continent\",\"country\"]")
 	private Double count;
 	
 	public Long getId() {

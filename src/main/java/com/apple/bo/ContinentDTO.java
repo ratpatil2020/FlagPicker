@@ -2,10 +2,15 @@ package com.apple.bo;
 
 import java.util.ArrayList;
 import java.util.List;
+import io.swagger.annotations.ApiModelProperty;
+
 
 public class ContinentDTO {
 
+	@ApiModelProperty(notes = "Hold the continent name")
 	private String continent;
+	
+	@ApiModelProperty(notes = "Hold the countries and correposning flag associated with continent.")
 	private List<CountryDTO> countries=new ArrayList<CountryDTO>();
 	
 	public String getContinent() {
