@@ -3,8 +3,13 @@ package com.apple.service;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.apple.aop.FlagPickerAspect;
 import com.apple.bo.ContinentDTO;
 import com.apple.bo.CountryDTO;
 import com.apple.exception.ContinentNotFoundException;
@@ -13,13 +18,14 @@ import com.apple.util.JsonParserUtil;
 
 @Service
 public class ContinentServiceImpl implements ContinentService{	
-		 
+	
+	private static final Logger LOGGER = LoggerFactory.getLogger(FlagPickerAspect.class);
+	
 	@Autowired
 	private JsonParserUtil jsonParser;
 	
 	public ContinentDTO[] getAllContinentsAndCountries() {
-		ContinentDTO[] continentDTOs=jsonParser.getContinentDTOs();	
-		
+		ContinentDTO[] continentDTOs=jsonParser.getContinentDTOs();			
 		return continentDTOs;
 	}
 	

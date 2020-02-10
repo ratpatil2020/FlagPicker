@@ -39,4 +39,29 @@ public class FlagPickerAspect {
         	LOGGER.info("*************************************[ method end ]******************************************************************************************************");
         }
 	}
+	
+	@Around("execution(*  com.apple.util.*.*(..))")
+	public Object readAJsonFileStartBeforeAndAfter(ProceedingJoinPoint joinPoint) throws Throwable{
+	
+		Instant start = Instant.now();
+        String className = joinPoint.getTarget().getClass().getCanonicalName();
+        String methodName = joinPoint.getSignature().getName();
+        LOGGER.info("*****************************[ method start ]*************************************************************************************************************");
+        LOGGER.info("started method : " + className+"."+methodName);
+
+        Object obj;
+        try {
+            obj = joinPoint.proceed();
+            return obj;
+        } catch (Throwable ex) {
+        	ex.printStackTrace();
+        	LOGGER.error("Method : "+className+"."+methodName+" Exception ->{}",ex);
+            throw ex;
+        }finally {
+        	Instant end = Instant.now();
+        	Duration timeElapsed = Duration.between(start, end); 
+        	LOGGER.info("elapsed time for method : " + className+"."+methodName +" is -> [ "+timeElapsed.toMillis() +" ms ]");        	
+        	LOGGER.info("*************************************[ method end ]******************************************************************************************************");
+        }
+	}
 }
