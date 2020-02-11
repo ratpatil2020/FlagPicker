@@ -19,8 +19,7 @@ import com.apple.bo.CountryDTO;
 import com.apple.service.ContinentService;
 import com.apple.util.JsonParserUtil;
 
-@AutoConfigureMockMvc
-@SpringBootTest(webEnvironment=WebEnvironment.MOCK, classes={ FlagFickerApplication.class}) 
+@SpringBootTest 
 public class ContinentServiceImplTest {
 
 	@Mock
